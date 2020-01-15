@@ -9,23 +9,23 @@
 /* Begin PBXBuildFile section */
 		CD7F2A2A23CFAAAE00DA93E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7F2A2923CFAAAE00DA93E9 /* AppDelegate.swift */; };
 		CD7F2A2C23CFAAAE00DA93E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7F2A2B23CFAAAE00DA93E9 /* SceneDelegate.swift */; };
-		CD7F2A2E23CFAAAE00DA93E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7F2A2D23CFAAAE00DA93E9 /* ViewController.swift */; };
 		CD7F2A3123CFAAAE00DA93E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2A2F23CFAAAE00DA93E9 /* Main.storyboard */; };
 		CD7F2A3423CFAAAE00DA93E9 /* MAD4114GPc0766628c0762152.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD7F2A3223CFAAAE00DA93E9 /* MAD4114GPc0766628c0762152.xcdatamodeld */; };
 		CD7F2A3623CFAAAF00DA93E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2A3523CFAAAF00DA93E9 /* Assets.xcassets */; };
 		CD7F2A3923CFAAAF00DA93E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD7F2A3723CFAAAF00DA93E9 /* LaunchScreen.storyboard */; };
+		CD7F2A4123CFAD8800DA93E9 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7F2A4023CFAD8800DA93E9 /* CategoriesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CD7F2A2623CFAAAE00DA93E9 /* MAD4114GPc0766628c0762152.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAD4114GPc0766628c0762152.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD7F2A2923CFAAAE00DA93E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD7F2A2B23CFAAAE00DA93E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CD7F2A2D23CFAAAE00DA93E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD7F2A3023CFAAAE00DA93E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD7F2A3323CFAAAE00DA93E9 /* MAD4114GPc0766628c0762152.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAD4114GPc0766628c0762152.xcdatamodel; sourceTree = "<group>"; };
 		CD7F2A3523CFAAAF00DA93E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD7F2A3823CFAAAF00DA93E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD7F2A3A23CFAAAF00DA93E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD7F2A4023CFAD8800DA93E9 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +58,10 @@
 		CD7F2A2823CFAAAE00DA93E9 /* MAD4114GPc0766628c0762152 */ = {
 			isa = PBXGroup;
 			children = (
+				CD7F2A4023CFAD8800DA93E9 /* CategoriesViewController.swift */,
+				CD7F2A2F23CFAAAE00DA93E9 /* Main.storyboard */,
 				CD7F2A2923CFAAAE00DA93E9 /* AppDelegate.swift */,
 				CD7F2A2B23CFAAAE00DA93E9 /* SceneDelegate.swift */,
-				CD7F2A2D23CFAAAE00DA93E9 /* ViewController.swift */,
-				CD7F2A2F23CFAAAE00DA93E9 /* Main.storyboard */,
 				CD7F2A3523CFAAAF00DA93E9 /* Assets.xcassets */,
 				CD7F2A3723CFAAAF00DA93E9 /* LaunchScreen.storyboard */,
 				CD7F2A3A23CFAAAF00DA93E9 /* Info.plist */,
@@ -141,9 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD7F2A2E23CFAAAE00DA93E9 /* ViewController.swift in Sources */,
 				CD7F2A3423CFAAAE00DA93E9 /* MAD4114GPc0766628c0762152.xcdatamodeld in Sources */,
 				CD7F2A2A23CFAAAE00DA93E9 /* AppDelegate.swift in Sources */,
+				CD7F2A4123CFAD8800DA93E9 /* CategoriesViewController.swift in Sources */,
 				CD7F2A2C23CFAAAE00DA93E9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

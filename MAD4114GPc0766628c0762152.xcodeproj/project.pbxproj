@@ -60,12 +60,12 @@
 			children = (
 				CD7F2A4023CFAD8800DA93E9 /* CategoriesViewController.swift */,
 				CD7F2A2F23CFAAAE00DA93E9 /* Main.storyboard */,
+				CD7F2A3223CFAAAE00DA93E9 /* MAD4114GPc0766628c0762152.xcdatamodeld */,
 				CD7F2A2923CFAAAE00DA93E9 /* AppDelegate.swift */,
 				CD7F2A2B23CFAAAE00DA93E9 /* SceneDelegate.swift */,
 				CD7F2A3523CFAAAF00DA93E9 /* Assets.xcassets */,
 				CD7F2A3723CFAAAF00DA93E9 /* LaunchScreen.storyboard */,
 				CD7F2A3A23CFAAAF00DA93E9 /* Info.plist */,
-				CD7F2A3223CFAAAE00DA93E9 /* MAD4114GPc0766628c0762152.xcdatamodeld */,
 			);
 			path = MAD4114GPc0766628c0762152;
 			sourceTree = "<group>";

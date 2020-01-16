@@ -5,13 +5,12 @@
 //  Created by SanDEV on 2020-01-15.
 //  Copyright © 2020 SanDEV. All rights reserved.
 //
-
 import UIKit
 import CoreData
-
 class CategoriesViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
+    //outlets
+@IBOutlet weak var tableView: UITableView!
+    //data storage
     var categories:[NSManagedObject] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,6 @@ class CategoriesViewController: UIViewController {
       //2
       let fetchRequest =
         NSFetchRequest<NSManagedObject>(entityName: "Categories")
-      
       //3
       do {
         categories = try managedContext.fetch(fetchRequest)
@@ -36,7 +34,7 @@ class CategoriesViewController: UIViewController {
         print("Could not fetch. \(error), \(error.userInfo)")
       }
     }
-    
+    //Add categories
     @IBAction func AddCategory(_ sender: UIBarButtonItem) {
         // Implement the addName IBAction
 let alert = UIAlertController(title: "New Category Name",message: "Add a new category",preferredStyle: .alert)
@@ -56,6 +54,7 @@ let saveAction = UIAlertAction(title: "Save", style: .destructive)
           alert.addAction(cancelAction)
         present(alert, animated: true)
         }
+    //saving in core data
     func save(name: String)
     {
       guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -77,10 +76,13 @@ let saveAction = UIAlertAction(title: "Save", style: .destructive)
       }
       catch let error as NSError {
         print("Could not save. \(error), \(error.userInfo)")
-      }
-    }
-}
-
+      }    }
+    //let the category delete
+    @IBAction func EditCategories(_ sender: Any)
+    {
+        editButtonItem.title = editButtonItem.title == "Edit" ? "Done" : "Edit"
+ tableView.setEditing(!tableView.isEditing, animated: true)
+    }}
 // MARK: - UITableViewDataSource
 extension CategoriesViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
@@ -89,8 +91,43 @@ extension CategoriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath)-> UITableViewCell {
 let category = categories[indexPath.row]
 let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",for: indexPath)
+cell.selectionStyle = .none
+cell.accessoryType = .disclosureIndicator
     cell.textLabel?.text = category.value(forKeyPath: "name") as? String
     return cell
   }
 }
-
+// MARK: - UITableViewDataDelegate
+extension CategoriesViewController: UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let appDelegate =
+              UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            managedContext.delete(self.categories[indexPath.row])
+            do{
+                try managedContext.save()
+                self.categories.removeAll()
+                self.tableView.reloadData()
+            }catch{
+                print("Failed")
+            }}}
+    //edit button converting to done with these method
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath)
+    {
+        self.editButtonItem.title = "Done"
+    }
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?)
+    {
+        self.editButtonItem.title = "Edit"
+    }
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }}

@@ -18,25 +18,20 @@ class CategoriesViewController: UIViewController {
         }
     override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
-      //1
-      guard let appDelegate =
-        UIApplication.shared.delegate as? AppDelegate else {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
           return
       }
       let managedContext = appDelegate.persistentContainer.viewContext
-      //2
-      let fetchRequest =
-        NSFetchRequest<NSManagedObject>(entityName: "Categories")
-      //3
+      let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Categories")
       do {
         categories = try managedContext.fetch(fetchRequest)
       } catch let error as NSError {
         print("Could not fetch. \(error), \(error.userInfo)")
       }
     }
+    
     //Add categories
     @IBAction func AddCategory(_ sender: UIBarButtonItem) {
-        // Implement the addName IBAction
 let alert = UIAlertController(title: "New Category Name",message: "Add a new category",preferredStyle: .alert)
 let saveAction = UIAlertAction(title: "Save", style: .destructive)
 {
@@ -60,16 +55,10 @@ let saveAction = UIAlertAction(title: "Save", style: .destructive)
       guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
         return
       }
-      // 1
-      let managedContext =
-        appDelegate.persistentContainer.viewContext
-      // 2
-      let entity = NSEntityDescription.entity(forEntityName:"Categories",in: managedContext)!
-      
+      let managedContext = appDelegate.persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(forEntityName:"Categories",in: managedContext)!
       let person = NSManagedObject(entity: entity,insertInto: managedContext)
-      // 3
       person.setValue(name, forKeyPath: "name")
-      // 4
       do {
         try managedContext.save()
         categories.append(person)
@@ -96,6 +85,7 @@ cell.accessoryType = .disclosureIndicator
     cell.textLabel?.text = category.value(forKeyPath: "name") as? String
     return cell
   }
+    
 }
 // MARK: - UITableViewDataDelegate
 extension CategoriesViewController: UITableViewDelegate
@@ -105,8 +95,7 @@ extension CategoriesViewController: UITableViewDelegate
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            guard let appDelegate =
-              UIApplication.shared.delegate as? AppDelegate else {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
             }
             let managedContext = appDelegate.persistentContainer.viewContext
@@ -114,7 +103,9 @@ extension CategoriesViewController: UITableViewDelegate
             do{
                 try managedContext.save()
                 self.categories.removeAll()
+            
                 self.tableView.reloadData()
+                
             }catch{
                 print("Failed")
             }}}

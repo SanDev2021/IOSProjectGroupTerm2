@@ -11,23 +11,33 @@ class CategoriesViewController: UIViewController {
     //outlets
 @IBOutlet weak var tableView: UITableView!
     //data storage
-    var categories:[NSManagedObject] = []
+    var categories = [Categories]()
+    
+//    let dataFilePath
+let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         }
     override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+        
+        guard (UIApplication.shared.delegate as? AppDelegate) != nil else {
           return
       }
-      let managedContext = appDelegate.persistentContainer.viewContext
-      let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Categories")
-      do {
-        categories = try managedContext.fetch(fetchRequest)
-      } catch let error as NSError {
-        print("Could not fetch. \(error), \(error.userInfo)")
-      }
+        loadData()
+    }
+    
+    func loadData(with request : NSFetchRequest<Categories> = Categories.fetchRequest())
+    {
+        do{
+            categories = try managedContext.fetch(request)
+            
+        }catch
+        {
+            print("Could not fetch. \(error)")
+        }
     }
     
     //Add categories
@@ -50,28 +60,33 @@ let saveAction = UIAlertAction(title: "Save", style: .destructive)
         present(alert, animated: true)
         }
     //saving in core data
-    func save(name: String)
+  func save(name: String)
     {
-      guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+        guard (UIApplication.shared.delegate as? AppDelegate) != nil else {
         return
       }
-      let managedContext = appDelegate.persistentContainer.viewContext
     let entity = NSEntityDescription.entity(forEntityName:"Categories",in: managedContext)!
-      let person = NSManagedObject(entity: entity,insertInto: managedContext)
-      person.setValue(name, forKeyPath: "name")
+        
+    let category = Categories(context: self.managedContext)
+        category.name = name
+        categories.append(category)
+        
       do {
         try managedContext.save()
-        categories.append(person)
       }
       catch let error as NSError {
         print("Could not save. \(error), \(error.userInfo)")
       }    }
+    
+    
+    
     //let the category delete
     @IBAction func EditCategories(_ sender: Any)
     {
         editButtonItem.title = editButtonItem.title == "Edit" ? "Done" : "Edit"
  tableView.setEditing(!tableView.isEditing, animated: true)
     }}
+
 // MARK: - UITableViewDataSource
 extension CategoriesViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
@@ -83,9 +98,8 @@ let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",for: indexPath)
 cell.selectionStyle = .none
 cell.accessoryType = .disclosureIndicator
     cell.textLabel?.text = category.value(forKeyPath: "name") as? String
-    return cell
+        return cell
   }
-    
 }
 // MARK: - UITableViewDataDelegate
 extension CategoriesViewController: UITableViewDelegate
@@ -102,11 +116,9 @@ extension CategoriesViewController: UITableViewDelegate
             managedContext.delete(self.categories[indexPath.row])
             do{
                 try managedContext.save()
-                self.categories.removeAll()
-            
+                loadData()
                 self.tableView.reloadData()
-                
-            }catch{
+                }catch{
                 print("Failed")
             }}}
     //edit button converting to done with these method
@@ -121,4 +133,21 @@ extension CategoriesViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool
     {
         return true
-    }}
+    }
+    func perform() {
+        // Add your own animation code here.
+
+    }
+    func callSegueFromCell(myData dataobject: AnyObject) {
+       //try not to send self, just to avoid retain cycles(depends on how you handle the code on the next controller)
+       self.performSegue(withIdentifier: "cetgoryToNotes", sender:dataobject )
+     }
+override func prepare(for segue: UIStoryboardSegue,sender: Any?)
+    {
+        let destinationVC = segue.destination as! MainTableViewController
+        if let indexpath = tableView.indexPathForSelectedRow{
+            destinationVC.parentCategory = categories[indexpath.row]
+        }
+
+    }
+}

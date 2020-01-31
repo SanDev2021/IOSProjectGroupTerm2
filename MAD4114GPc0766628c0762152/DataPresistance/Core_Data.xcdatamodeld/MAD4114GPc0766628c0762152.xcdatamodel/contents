@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Categories" representedClassName="Categories" syncable="YES" codeGenerationType="class">
+    <entity name="Categories" representedClassName=".Categories" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="parentCategory" inverseEntity="Note"/>
     </entity>
-    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+    <entity name="Note" representedClassName=".Note" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="details" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="noteImage" optional="YES" attributeType="Integer 16" defaultValueString="0" allowsExternalBinaryDataStorage="YES" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="parentCategory" maxCount="1" deletionRule="Nullify" destinationEntity="Categories" inverseName="notes" inverseEntity="Categories"/>
     </entity>
     <elements>
-        <element name="Categories" positionX="-36" positionY="9" width="128" height="58"/>
-        <element name="Note" positionX="-36" positionY="18" width="128" height="88"/>
+        <element name="Categories" positionX="-362.109375" positionY="-5.42578125" width="128" height="73"/>
+        <element name="Note" positionX="271.56640625" positionY="-50.28515625" width="128" height="133"/>
     </elements>
 </model>

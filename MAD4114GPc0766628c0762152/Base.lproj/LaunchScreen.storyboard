@@ -15,20 +15,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notes App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hW1-Tc-5Mv">
-                                <rect key="frame" x="96" y="412" width="223" height="47"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="47"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p41-7H-9eF">
+                                <rect key="frame" x="62" y="379" width="278" height="145"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Notes">
+                                        <attributes>
+                                            <font key="NSFont" size="116" name="BradleyHandITCTT-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hW1-Tc-5Mv" secondAttribute="trailing" constant="166" id="Pj9-Qc-csu"/>
-                            <constraint firstItem="hW1-Tc-5Mv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="394" id="WK8-Xr-fVt"/>
-                            <constraint firstItem="hW1-Tc-5Mv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="167" id="it5-aH-lBi"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hW1-Tc-5Mv" secondAttribute="bottom" constant="403" id="mKl-ak-bUD"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
